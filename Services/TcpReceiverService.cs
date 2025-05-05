@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using DigiDineKDS.Models;
 
-namespace DigiDineKDS.Service
+namespace DigiDineKDS.Services
 {
     public class TcpReceiverService
     {

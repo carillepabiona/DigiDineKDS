@@ -1,6 +1,32 @@
-﻿<Router AppAssembly="@typeof(MauiProgram).Assembly">
+﻿@using DigiDineKDS.Components.Pages
+@using DigiDineKDS.Services
+@inject NavigationManager NavigationManager
+
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <RouteView RouteData="@routeData" DefaultLayout="@GetLayout(routeData.PageType)" />
     </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(Layout.MainLayout)">
+            <p>Page not found</p>
+        </LayoutView>
+    </NotFound>
 </Router>
+
+@code {
+    [Inject] IAuthService AuthService { get; set; }
+
+    private Type GetLayout(Type pageType)
+    {
+        // If not logged in, force Login page to use no layout
+        if (!AuthService.IsAuthenticated && pageType != typeof(Pages.Login))
+        {
+            // Redirect to login
+            NavigationManager.NavigateTo("/login", true);
+            return typeof(None);
+        }
+
+        return typeof(Layout.MainLayout);
+    }
+}

@@ -1,0 +1,59 @@
+﻿@page "/login"
+@layout None
+@using DigiDineKDS.Services
+@inject NavigationManager NavigationManager
+@inject IAuthService AuthService
+
+<div class="wrapper">
+    <div class="login-container">
+        <img src="images/logo_4.png" alt="Restaurant Logo" class="logo" />
+        <h3>Login</h3>
+
+        <div class="input-container">
+            <label>Username:</label>
+            <select @bind="username" class="form-select">
+                <option value="">Select Username</option>
+                <option value="kitchen">Kitchen</option>
+                @* <option value="admin">Admin</option> *@
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="input-container">
+            <label>Password:</label>
+            <input type="password" @bind="password" class="form-control" />
+        </div>
+        <div>
+            <button @onclick="HandleLogin" class="login-button">Login</button>
+        </div>
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <p class="error-message">@errorMessage</p>
+        }
+    </div>
+</div>
+
+@code {
+    private string username;
+    private string password;
+    private string errorMessage;
+
+    private async Task HandleLogin()
+    {
+        var success = await AuthService.LoginAsync(username, password);
+        if (success)
+        {
+            if (AuthService.Role == "Kitchen")
+            {
+                NavigationManager.NavigateTo("/kitchen");
+            }
+            // else if (AuthService.Role == "Cashier")
+            // {
+            //     NavigationManager.NavigateTo("/");
+            // }
+        }
+        else
+        {
+            errorMessage = "Invalid credentials.";
+        }
+    }
+}

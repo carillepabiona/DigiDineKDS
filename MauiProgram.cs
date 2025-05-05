@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using DigiDineKDS.Service;
+using DigiDineKDS.Services;
+
 namespace DigiDineKDS
 {
     public static class MauiProgram
@@ -17,6 +18,7 @@ namespace DigiDineKDS
 
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddSingleton<TcpReceiverService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
