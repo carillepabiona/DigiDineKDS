@@ -17,7 +17,7 @@
     background-color: rgba(255, 248, 225, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    font-family: 'Arial', sans-serif;
+    font-family: "Ubuntu", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,7 +35,19 @@ h3 {
 }
 
 .input-container {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.password-form-control {
+    width: 170px;
+    height: 35px;
+    font-size: 14px;
+}
+
+.form-select {
+    width: 170px;
+    height: 35px;
+    font-size: 14px;
 }
 
 label {
@@ -53,14 +65,17 @@ input {
 }
 
 .login-button {
-    width: 100%;
+    font-family: "Ubuntu", sans-serif;
+    width: 100px;
+    height: 40px;
     padding: 10px;
     background-color: #FF6F00;
     color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
+    justify-content: center;
 }
 
     .login-button:hover {

@@ -79,7 +79,11 @@
         }
 
 .nav-scrollable {
-    display: none;
+    background-color: #212529; /* dark background */
+    padding: 1rem;
+    width: 220px;
+    height: 100vh;
+    overflow-y: hidden;
 }
 
 .navbar-toggler:checked ~ .nav-scrollable {

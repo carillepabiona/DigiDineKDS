@@ -1,8 +1,10 @@
 ﻿@page "/login"
+
 @layout None
 @using DigiDineKDS.Services
 @inject NavigationManager NavigationManager
 @inject IAuthService AuthService
+@inject IJSRuntime JSRuntime
 
 <div class="wrapper">
     <div class="login-container">
@@ -20,7 +22,7 @@
         </div>
         <div class="input-container">
             <label>Password:</label>
-            <input type="password" @bind="password" class="form-control" />
+            <input type="password" @bind="password" class="password-form-control" />
         </div>
         <div>
             <button @onclick="HandleLogin" class="login-button">Login</button>
@@ -44,7 +46,7 @@
         {
             if (AuthService.Role == "Kitchen")
             {
-                NavigationManager.NavigateTo("/kitchen");
+                NavigationManager.NavigateTo("/");
             }
             // else if (AuthService.Role == "Cashier")
             // {
